@@ -1,0 +1,81 @@
+<div class="row auth">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+    <div *ngIf="isLoading" style="text-align: center">
+      <app-loading></app-loading>
+    </div>
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+      <div class="form-group" *ngIf="!isLoginMode">
+        <label for="username">Username :-</label>
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          ngModel
+          name="username"
+          required
+        />
+      </div>
+
+      <div class="form-group" *ngIf="!isLoginMode">
+        <label for="username">Phone Number :-</label>
+        <input
+          appearance:none
+          type="number"
+          id="mobile"
+          class="form-control"
+          ngModel
+          name="mobile"
+          required
+          minlength="10"
+          mobile
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-mail :-</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          ngModel
+          name="email"
+          required
+          email
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password :-</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          ngModel
+          name="password"
+          required
+          minlength="6"
+          
+        />
+      </div>
+
+      <div class="buts">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!authForm.valid"
+        >
+          {{ isLoginMode ? "Login" : "Sign Up" }}
+        </button>
+
+        <button
+          class="btn btn-primary m-3"
+          type="button"
+          (click)="switchToAnother()"
+        >
+          Switch To {{ isLoginMode ? "Sign Up" : "Login" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
